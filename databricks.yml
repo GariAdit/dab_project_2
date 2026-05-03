@@ -1,0 +1,54 @@
+bundle:
+  name: DAB_PROJECT
+  uuid: 419877f4-d328-4df9-baeb-4e99b2ca3124
+
+include:
+  - resources/*.yml
+
+variables:
+  catalog:
+    default: "citibike_dev"
+  schema:
+    default: "dev"
+  dev_flag: 
+    default: true
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-7405610985877027.7.azuredatabricks.net
+    variables:
+      catalog: "citibike_dev"
+      schema: "dev"
+
+  test:
+    mode: production
+    workspace:
+      host: https://adb-7405614745509625.5.azuredatabricks.net/
+      root_path: /Workspace/Shared/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog: "citibike_test"
+      schema: "test"
+      dev_flag: 
+        default: false
+    presets:
+      name_prefix: '[testing]'
+    permissions:
+      - user_name: adityagaremella_outlook.com#ext#@adityagaremellaoutlook.onmicrosoft.com
+        level: CAN_MANAGE
+
+  prod:
+    mode: production
+    workspace:
+      host: https://adb-7405609410876995.15.azuredatabricks.net/
+      root_path: /Workspace/Shared/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog: "citibike_prod"
+      schema: "prod"
+      dev_flag: 
+        default: false
+    permissions:
+      - user_name: adityagaremella_outlook.com#ext#@adityagaremellaoutlook.onmicrosoft.com
+        level: CAN_MANAGE
