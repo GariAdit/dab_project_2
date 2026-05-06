@@ -36,8 +36,10 @@ targets:
     presets:
       name_prefix: '[testing]'
     permissions:
-      - user_name: adityagaremella_outlook.com#ext#@adityagaremellaoutlook.onmicrosoft.com
+      - service_principal_name: 8c35f5b0-7186-4914-a0e2-c88964880988
         level: CAN_MANAGE
+    run_as:
+      service_principal_name: 8c35f5b0-7186-4914-a0e2-c88964880988
 
   prod:
     mode: production
@@ -50,5 +52,7 @@ targets:
       dev_flag: 
         default: false
     permissions:
-      - user_name: adityagaremella_outlook.com#ext#@adityagaremellaoutlook.onmicrosoft.com
+      - user_name: 690e3a64-2daa-4f2d-9b48-1fd2a225085a
         level: CAN_MANAGE
+    run_as:
+      service_principal_name: 690e3a64-2daa-4f2d-9b48-1fd2a225085a
